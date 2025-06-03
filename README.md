@@ -150,4 +150,6 @@ pnpm test
 - **Frontend**: React, TypeScript, CSS Modules, Vite  
 - **Backend**: Node.js, Express  
 - **Testing**: Vitest (frontend), Jest (backend)
-```
+---
+
+Enjoy building! 🚀

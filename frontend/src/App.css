@@ -32,7 +32,6 @@
   margin-top: 8px;
 }
 
-/* Estilos para formulários */
 .album-form,
 .photo-form {
   background-color: #f8f9fa;
@@ -130,7 +129,6 @@
   }
 }
 
-/* Estilos para UserAlbumsPage */
 .album-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

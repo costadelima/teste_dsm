@@ -1,4 +1,3 @@
-/* Reset básico */
 * {
   margin: 0;
   padding: 0;
@@ -30,7 +29,6 @@ button:disabled {
   opacity: 0.6;
 }
 
-/* Animações */
 @keyframes spin {
   to {
     transform: rotate(360deg);

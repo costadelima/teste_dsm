@@ -1,4 +1,3 @@
-// Tipos para dados da API pública
 export interface User {
   id: number;
   name: string;
@@ -26,7 +25,6 @@ export interface Photo {
   thumbnailUrl: string;
 }
 
-// Tipos para operações CRUD
 export interface CreateAlbumDto {
   userId: number;
   title: string;
@@ -49,7 +47,6 @@ export interface UpdatePhotoDto {
   thumbnailUrl?: string;
 }
 
-// Tipos para respostas do BFF
 export interface UserWithAlbums {
   id: number;
   name: string;
@@ -64,7 +61,6 @@ export interface AlbumWithPhotos {
   photoCount: number;
 }
 
-// Tipos para navegação
 export type RootStackParamList = {
   Users: undefined;
   UserAlbums: { userId: number };

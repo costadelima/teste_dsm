@@ -12,7 +12,6 @@ export const createPhoto = async (data: CreatePhotoDto): Promise<Photo> => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       ...data,
-      // Garante que thumbnailUrl sempre tenha um valor
       thumbnailUrl: data.thumbnailUrl || data.url,
     }),
   });
@@ -20,7 +19,6 @@ export const createPhoto = async (data: CreatePhotoDto): Promise<Photo> => {
 };
 
 export const updatePhoto = async (id: number, updates: UpdatePhotoDto): Promise<Photo> => {
-  // Se atualizar a URL principal mas não a thumbnail, usa a mesma URL
   const finalUpdates =
     updates.url && !updates.thumbnailUrl ? { ...updates, thumbnailUrl: updates.url } : updates;
 

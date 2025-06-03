@@ -1,13 +1,11 @@
 import { User, Album, Photo } from './types/apiTypes';
 
-// Banco de dados em memória
 export let users: User[] = [];
 export let albums: Album[] = [];
 export let photos: Photo[] = [];
 
 export const initializeDB = async () => {
   try {
-    // Carregar dados iniciais
     const [usersRes, albumsRes, photosRes] = await Promise.all([
       fetch('https://jsonplaceholder.typicode.com/users'),
       fetch('https://jsonplaceholder.typicode.com/albums'),
@@ -22,7 +20,6 @@ export const initializeDB = async () => {
   }
 };
 
-// Operações para álbuns
 export const addAlbum = (album: Album) => {
   const newId = Math.max(0, ...albums.map(a => a.id)) + 1;
   const newAlbum = { ...album, id: newId };
@@ -42,12 +39,10 @@ export const updateAlbum = (id: number, updates: Partial<Album>) => {
 export const deleteAlbum = (id: number) => {
   const initialLength = albums.length;
   albums = albums.filter(a => a.id !== id);
-  // Apagar fotos associadas
   photos = photos.filter(p => p.albumId !== id);
   return initialLength !== albums.length;
 };
 
-// Operações para fotos
 export const addPhoto = (photo: Photo) => {
   const newId = Math.max(0, ...photos.map(p => p.id)) + 1;
   const newPhoto = { 
@@ -62,7 +57,6 @@ export const addPhoto = (photo: Photo) => {
 export const updatePhoto = (id: number, updates: Partial<Photo>) => {
   const index = photos.findIndex(p => p.id === id);
   if (index !== -1) {
-    // Garantir que thumbnailUrl sempre tenha um valor
     if (updates.url && !updates.thumbnailUrl) {
       updates.thumbnailUrl = updates.url;
     }
@@ -78,7 +72,6 @@ export const deletePhoto = (id: number) => {
   return initialLength !== photos.length;
 };
 
-// Funções de consulta
 export const getUser = (id: number) => {
   return users.find(u => u.id === id);
 };

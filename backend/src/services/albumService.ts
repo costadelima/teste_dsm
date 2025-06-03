@@ -11,10 +11,8 @@ export const getAlbumPhotos = (albumId: number): Photo[] => {
 
 export const createAlbum = (dto: CreateAlbumDto): Album => {
   return addAlbum({
-    id: 0, // Será gerado pelo addAlbum
+    id: 0, 
     userId: dto.userId,
     title: dto.title
   });
 };
-
-// Funções similares para updateAlbum, deleteAlbum, etc.

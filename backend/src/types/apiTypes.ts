@@ -1,4 +1,3 @@
-// Tipos para as APIs externas
 export interface User {
   id: number;
   name: string;
@@ -20,7 +19,6 @@ export interface Photo {
   thumbnailUrl: string;
 }
 
-// Tipo para resposta do BFF
 export interface UserWithAlbums {
   id: number;
   name: string;
@@ -30,7 +28,7 @@ export interface UserWithAlbums {
     id: number;
     title: string;
     photoCount: number;
-    firstPhoto?: string; // URL da primeira foto
+    firstPhoto?: string; 
   }[];
 }
 

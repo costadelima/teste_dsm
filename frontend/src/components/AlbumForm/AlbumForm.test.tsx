@@ -1,34 +1,48 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import AlbumForm from './AlbumForm';
 
 describe('AlbumForm', () => {
-  it('submits the form with valid data', async () => {
-    const mockOnCreated = vi.fn();
-    const user = userEvent.setup();
+it('submits the form with valid data', async () => {
+  const mockOnCreated = vi.fn();
+  const user = userEvent.setup();
 
-    render(<AlbumForm userId={1} onCreated={mockOnCreated} />);
+  const mockFetch = vi.spyOn(globalThis, 'fetch').mockResolvedValue({
+    json: () => Promise.resolve({ userId: 1, title: 'Vacation Photos' }),
+    ok: true,
+  } as any);
 
-    await user.type(screen.getByLabelText('Album Title'), 'Vacation Photos');
+  render(<AlbumForm userId={1} onCreated={mockOnCreated} />);
 
-    fireEvent.click(screen.getByText('Create Album'));
+  const inputElement = screen.getByLabelText('Album Title');
+  const buttonElement = await screen.findByRole('button', { name: 'Create Album' });
 
-    await vi.waitFor(() => {
-      expect(mockOnCreated).toHaveBeenCalledWith(
-        expect.objectContaining({ title: 'Vacation Photos' }),
-      );
-    });
+  await act(async () => {
+    await user.type(inputElement, 'Vacation Photos');
+    fireEvent.click(buttonElement);
   });
 
-  it('shows error when title is empty', async () => {
-    const mockOnCreated = vi.fn();
-
-    render(<AlbumForm userId={1} onCreated={mockOnCreated} />);
-
-    fireEvent.click(screen.getByText('Create Album'));
-
-    expect(await screen.findByText('Album title is required')).toBeInTheDocument();
-    expect(mockOnCreated).not.toHaveBeenCalled();
+  await waitFor(() => {
+    expect(mockOnCreated).toHaveBeenCalledTimes(1);
+    expect(mockOnCreated).toHaveBeenCalledWith({ userId: 1, title: 'Vacation Photos' });
   });
+
+  mockFetch.mockRestore();
+});
+
+it('shows error when title is empty', async () => {
+  const mockOnCreated = vi.fn();
+
+  render(<AlbumForm userId={1} onCreated={mockOnCreated} />);
+
+  const buttonElement = await screen.findByRole('button', { name: 'Create Album' });
+
+  await act(async () => {
+    fireEvent.click(buttonElement);
+  });
+
+  expect(await screen.findByText('Album title is required')).toBeInTheDocument();
+  expect(mockOnCreated).not.toHaveBeenCalled();
+});
 });

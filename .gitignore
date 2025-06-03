@@ -62,11 +62,6 @@ out/
 docker-compose.override.yml
 docker-compose.prod.yml
 
-# TypeScript output
-*.js
-*.js.map
-*.d.ts
-
 # Temporary files created by developers
 *.tmp
 *.swp

@@ -50,16 +50,6 @@ yarn dev
 pnpm dev
 ```
 
-Alternatively, run the compiled backend:
-
-```bash
-npm start
-# or
-yarn start
-# or
-pnpm start
-```
-
 🔗 Backend will be available at: [http://localhost:3001](http://localhost:3001)
 
 ---
@@ -103,18 +93,6 @@ Open your browser and go to: [http://localhost:5173](http://localhost:5173)
 ## 🛠️ Code Quality Tools
 
 This project uses **ESLint** and **Prettier** for code consistency and quality.
-
-### Linting
-
-```bash
-cd frontend  # or cd backend
-
-npm run lint
-# or
-yarn lint
-# or
-pnpm lint
-```
 
 ### Formatting
 

@@ -152,4 +152,18 @@ pnpm test
 - **Testing**: Vitest (frontend), Jest (backend)
 ---
 
+## 📷 Sample Image URLs for Testing
+
+Use the following URLs to test the photo upload form:
+
+### 🌄 Image URLs (Required)
+
+```text
+https://picsum.photos/id/237/600/400
+https://picsum.photos/id/1015/600/400
+https://picsum.photos/id/1025/600/400
+https://picsum.photos/id/1062/600/400
+https://via.placeholder.com/600x400.png?text=Example+Photo
+```
+
 Enjoy building! 🚀

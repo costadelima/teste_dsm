@@ -29,6 +29,10 @@
 }
 
 .albumCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px; 
   background: #ffffff;
   border-radius: 8px;
   overflow: hidden;
@@ -43,6 +47,7 @@
 .albumLink {
   text-decoration: none;
   color: inherit;
+  flex-grow: 1;
 }
 
 .albumContent {
@@ -62,9 +67,9 @@
 .albumActions {
   padding: 10px 15px;
   background-color: #f8f9fa;
+  border-top: 1px solid #eee;
   display: flex;
   justify-content: flex-end;
-  border-top: 1px solid #eee;
 }
 
 .deleteButton {

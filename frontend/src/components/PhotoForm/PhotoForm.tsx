@@ -30,13 +30,11 @@ export default function PhotoForm({ albumId, onCreated }: PhotoFormProps) {
       const photoData: CreatePhotoDto = {
         albumId,
         title,
-        url,
-        thumbnailUrl: thumbnailUrl || url,
+        url: url,
+        thumbnailUrl: thumbnailUrl,
       };
 
-      const createdPhoto = await createPhoto(photoData);
-
-      onCreated(createdPhoto);
+      onCreated(photoData);
 
       setTitle('');
       setUrl('');
